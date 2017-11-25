@@ -27,18 +27,13 @@ import java.sql.SQLException;
  */
 public final class PostgresHealthChecks {
 
-  public static SuccessOrFailure canConnectTo(
-      final Container container, final String dbUser, final String dbPassword, final String dbName) {
-    SuccessOrFailure rv;
-
-    try (
-        Connection connection = DriverManager.getConnection(container.port(5432)
-            .inFormat("jdbc:postgresql://$HOST:$EXTERNAL_PORT/" + dbName + "?loggerLevel=OFF"), dbUser, dbPassword)
-    ) {
-      rv = SuccessOrFailure.success();
+  @SuppressWarnings("unused")
+  public static SuccessOrFailure canConnectTo(final Container container) {
+    try (Connection connection = DriverManager.getConnection(container.port(5432)
+        .inFormat("jdbc:postgresql://$HOST:$EXTERNAL_PORT/postgres?loggerLevel=OFF"), "postgres", "postgres")) {
+      return SuccessOrFailure.success();
     } catch (SQLException e) {
-      rv = SuccessOrFailure.failureWithCondensedException("Connection not yet ready", e);
+      return SuccessOrFailure.failureWithCondensedException("Connection not yet ready", e);
     }
-    return rv;
   }
 }
