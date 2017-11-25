@@ -22,7 +22,15 @@
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 		<project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
 		<java.version>1.8</java.version>
+		<docker-compose-rule-junit4.version>0.33.0</docker-compose-rule-junit4.version>
 	</properties>
+
+	<repositories>
+		<repository>
+			<id>bintray-palantir-releases</id>
+			<url>https://dl.bintray.com/palantir/releases</url>
+		</repository>
+	</repositories>
 
 	<dependencies>
 		<dependency>
@@ -36,10 +44,22 @@
 			<scope>runtime</scope>
 		</dependency>
 		<dependency>
+			<groupId>org.projectlombok</groupId>
+			<artifactId>lombok</artifactId>
+		</dependency>
+		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-test</artifactId>
 			<scope>test</scope>
 		</dependency>
+
+		<dependency>
+			<groupId>com.palantir.docker.compose</groupId>
+			<artifactId>docker-compose-rule-junit4</artifactId>
+			<version>${docker-compose-rule-junit4.version}</version>
+			<scope>test</scope>
+		</dependency>
+
 	</dependencies>
 
 	<build>
