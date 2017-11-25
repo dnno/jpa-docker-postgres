@@ -1,0 +1,13 @@
+version: "3"
+
+services:
+  postgres:
+    container_name: postgres
+    image: postgres:9.4.15
+    restart: always
+    ports:
+      - "5400:5432"
+    environment:
+      - POSTGRES_PASSWORD=dbpassword
+      - POSTGRES_USER=dbuser
+      - POSTGRES_DB=custom
